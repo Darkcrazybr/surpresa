@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batimento</title>
+    <link rel="stylesheet" href="styles3.css">
+</head>
+<body>
+    <div class="heart"></div>
+    <button id="backButton" style="display: none;">Voltar</button>
+    <div id="messages"></div>
+
+    <script>
+        function createMessage(text) {
+            const message = document.createElement('div');
+            message.className = 'message';
+            message.innerText = text;
+
+            // Posição aleatória
+            const x = Math.random() * 90; // 90% da largura da tela
+            const y = Math.random() * 70; // 70% da altura da tela
+            message.style.left = `${x}vw`;
+            message.style.top = `${y}vh`;
+
+            document.getElementById('messages').appendChild(message);
+            
+            setTimeout(() => {
+                message.style.transform = 'translateY(-100px)';
+                message.style.opacity = '0';
+            }, 2000); // Espera 2 segundos antes de sumir
+            setTimeout(() => {
+                message.remove();
+            }, 3000); // Remove após 3 segundos
+        }
+
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('backButton').style.display = 'block';
+            }, 5000); // Mostra o botão após 5 segundos
+
+            const messages = [
+                "Você é incrível!",
+                "Continue brilhando!",
+                "Acredite em você!",
+                "O céu é o limite!",
+                "Faça acontecer!"
+            ];
+
+            let delay = 0;
+            messages.forEach((msg, index) => {
+                setTimeout(() => createMessage(msg), delay);
+                delay += 1500; // Aumenta o intervalo entre mensagens
+            });
+        };
+
+        document.getElementById('backButton').addEventListener('click', function() {
+            window.location.href = 'index.html'; // Muda para duas pastas acima
+        });
+    </script>
+</body>
+</html>

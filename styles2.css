@@ -1,0 +1,28 @@
+body {  
+    background-color: #000;    
+    margin: 0;  
+    overflow: hidden;  
+}
+
+#canvas {
+    display: block;
+}
+
+#backButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ff4081;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 10; /* Para garantir que o botão fique acima do canvas */
+}
+
+#backButton:hover {
+    background-color: #e91e63;
+}

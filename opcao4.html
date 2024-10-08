@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>surpresinha</title>
+  <link rel="stylesheet" href="styles4.css">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #000; /* Fundo preto */
+      font-family: 'Arial', sans-serif;
+      color: #00FFFF; /* Cor ciana */
+    }
+
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2em;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    .vegetation {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to top, #0B3D0B, transparent);
+      z-index: -1; /* Para ficar atrás das flores e do texto */
+    }
+
+    .leaf {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: #00FF7F; /* Cor das folhas */
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: rise 1s forwards; /* Folhas sobem */
+    }
+
+    @keyframes rise {
+      from { transform: translateY(0); }
+      to { transform: translateY(-100px); }
+    }
+
+    @keyframes fall {
+      from { 
+        transform: translateY(-100px) rotate(0deg); 
+        opacity: 1; 
+      }
+      to { 
+        transform: translateY(300px) rotate(360deg); 
+        opacity: 0; 
+      }
+    }
+
+    /* Posições das folhas */
+    .leaf:nth-child(1) { left: 10%; }
+    .leaf:nth-child(2) { left: 30%; }
+    .leaf:nth-child(3) { left: 50%; }
+    .leaf:nth-child(4) { left: 70%; }
+    .leaf:nth-child(5) { left: 90%; }
+  </style>
+</head>
+
+<body class="not-loaded">
+  <div class="night"></div>
+  <div class="flowers">
+    <div class="flower flower--1">
+      <!-- ... seu código de flores ... -->
+    </div>
+    <!-- Repita para outras flores -->
+  </div>
+
+  <div id="message"></div>
+
+  <div class="vegetation">
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+  </div>
+
+  <audio id="backgroundMusic" src="musicaanchor.mp3" loop></audio>
+
+  <script src="script4.js"></script>
+  <script>
+    window.onload = () => {
+      // Tocar música
+      const music = document.getElementById('backgroundMusic');
+      music.play();
+
+      setTimeout(() => {
+        document.body.classList.remove("not-loaded");
+
+        // Exibir a mensagem após as folhas subirem
+        const messageElement = document.getElementById("message");
+        messageElement.innerHTML = "Você é incrível, Lauara! 🌸 Apesar de eu não estar presente, sei que você é uma garota incrível. Espero que tudo na sua vida fique bem e que você realize tudo. Você merece ser feliz! 💖";
+        messageElement.style.opacity = 1;
+
+        // Manter a mensagem por 10 segundos
+        setTimeout(() => {
+          messageElement.style.animation = "fadeOut 3s forwards"; // Animação para sumir devagar
+
+          // Iniciar a animação das folhas caindo
+          setTimeout(() => {
+            const leaves = document.querySelectorAll('.leaf');
+            leaves.forEach((leaf, index) => {
+              leaf.style.animation = `fall 2s forwards`;
+              leaf.style.animationDelay = `${index * 1}s`; // Atraso na animação das folhas caindo
+            });
+
+            setTimeout(() => {
+              window.location.href = "opcao5.html"; // Redirecionar para opcao5.html
+            }, 3000); // Aguarde o tempo total para todas as folhas caírem
+          }, 3000); // Atraso para iniciar a queda após o fade out do texto
+        }, 10000); // Mantenha a mensagem por 10 segundos
+      }, 1000); // Atraso inicial
+    };
+  </script>
+</body>
+
+</html>

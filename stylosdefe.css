@@ -1,0 +1,92 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #ff66b2, #ffffff);
+    overflow: hidden;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    text-align: center;
+    transform: translateY(-30px);
+    animation: slideIn 0.5s forwards;
+  }
+  
+  h2 {
+    color: #ff66b2;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .option {
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 8px;
+    background-color: #ff66b2;
+    color: white;
+    font-size: 18px;
+    transition: transform 0.3s, background-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .option::after {
+    content: '';
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: all 0.5s ease;
+    z-index: 0;
+  }
+  
+  .option:hover {
+    transform: scale(1.1);
+    background-color: #e6007e;
+  }
+  
+  .option:hover::after {
+    width: 0;
+    height: 0;
+  }
+  
+  .option span {
+    position: relative;
+    z-index: 1;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-30px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
